@@ -20,5 +20,4 @@ public class EnemyShipDiagonal extends EnemyShip {
         y = y + ySpeed;
         updateFrame();
     }
-
 }

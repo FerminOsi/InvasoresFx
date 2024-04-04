@@ -54,6 +54,8 @@ public class EnemySpawner {
                 enemies = crearEnemigosNivelPaquito(gameRect);
                 break;
             case 3:
+                enemies = crearEnemigosNivelBarrera(gameRect);
+                break;
             default:
                 enemies = crearEnemigosNivelPulpo(gameRect);
                 break;
@@ -133,6 +135,25 @@ public class EnemySpawner {
         enemies.add(createEnemyShip(E_DIAGONAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 7, 0, -vx, vy, E_SHOT_NOTHING));
         enemies.add(createEnemyShip(E_DIAGONAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 3, 0, -vx, vy, E_SHOT_NOTHING));
         enemies.add(createEnemyShip(E_DIAGONAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 4, 0, vx, vy, E_SHOT_NOTHING));
+        return enemies;
+    }
+    //testeando nivelesBarrera
+    public static List<AEnemy> crearEnemigosNivelBarrera(Rect gameRect) {
+        List<AEnemy> enemies = new ArrayList<>();
+        enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 0, 0, vx, 0, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 7, 1, -vx, 0, E_SHOT_GUN));
+        List<EnemyShip> el1 = new ArrayList<>();
+        el1.add(createEnemyShip(E_BARRIER, ENEMYBARRIER4_SPRITE_IMAGE, gameRect, 2, 3, 0, 0, E_SHOT_NOTHING));
+        el1.add(createEnemyShip(E_BARRIER, ENEMYBARRIER4_SPRITE_IMAGE, gameRect, 3, 2, 0, 0, E_SHOT_NOTHING));
+        el1.add(createEnemyShip(E_BARRIER, ENEMYBARRIER4_SPRITE_IMAGE, gameRect, 4, 2, 0, 0, E_SHOT_NOTHING));
+        el1.add(createEnemyShip(E_BARRIER, ENEMYBARRIER4_SPRITE_IMAGE, gameRect, 5, 3, 0, 0, E_SHOT_NOTHING));
+        el1.add(createEnemyShip(E_BARRIER, ENEMYBARRIER4_SPRITE_IMAGE, gameRect, 2, 4, 0, 0, E_SHOT_NOTHING));
+        el1.add(createEnemyShip(E_BARRIER, ENEMYBARRIER4_SPRITE_IMAGE, gameRect, 3, 5, 0, 0, E_SHOT_NOTHING));
+        el1.add(createEnemyShip(E_BARRIER, ENEMYBARRIER4_SPRITE_IMAGE, gameRect, 4, 5, 0, 0, E_SHOT_NOTHING));
+        el1.add(createEnemyShip(E_BARRIER, ENEMYBARRIER4_SPRITE_IMAGE, gameRect, 5, 4, 0, 0, E_SHOT_NOTHING));
+        EnemyShipGroup eg1 = new EnemyShipGroup(gameRect, el1);
+        eg1.setXSpeed(vx);
+        enemies.add(eg1);
         return enemies;
     }
 
