@@ -8,8 +8,19 @@ import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 
-public class EnemyAspersor extends EnemyShipDiagonal  {
+public class EnemyAspersor extends EnemyShipDiagonal implements IHaveShield {
+    int impactCount;
     public EnemyAspersor(Rect gameRect, Image img, int N) {
         super(gameRect, img, N);
     }
+
+    @Override
+    public boolean impact() {
+        this.addImpact();
+        return impactCount > 1;
     }
+
+    public void addImpact() {
+        this.impactCount++;
+    }
+}
