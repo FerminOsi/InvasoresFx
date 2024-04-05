@@ -3,6 +3,7 @@ package com.aetxabao.invasoresfx.game;
 import com.aetxabao.invasoresfx.game.enums.EEnemyShot;
 import com.aetxabao.invasoresfx.game.enums.EEnemyType;
 import com.aetxabao.invasoresfx.sprite.*;
+import com.aetxabao.invasoresfx.sprite.weaponry.AspersorGun;
 import com.aetxabao.invasoresfx.sprite.weaponry.Gun;
 import com.aetxabao.invasoresfx.util.Rect;
 import javafx.scene.image.Image;
@@ -54,7 +55,7 @@ public class EnemySpawner {
                 enemies = crearEnemigosNivelPaquito(gameRect);
                 break;
             case 3:
-                enemies = crearEnemigosNivelBarrera(gameRect);
+                enemies = crearEnemigosNivelAspersor(gameRect);
                 break;
             default:
                 enemies = crearEnemigosNivelPulpo(gameRect);
@@ -81,8 +82,12 @@ public class EnemySpawner {
             default:
                 e = new EnemyShip(gameRect, enemyImage, TICKSxFRAME);
                 break;
+            case E_SINU:
+                e = new EnemyAspersor(gameRect, enemyImage, TICKSxFRAME);
         }
-        if (shot == E_SHOT_GUN){
+        if (shot == E_SHOT_GUN && type == E_SINU){
+            e.setWeapon(new AspersorGun());
+        }else{
             e.setWeapon(new Gun());
         }
         e.setPos(getX(gameRect, i), getY(gameRect, j));
@@ -138,10 +143,10 @@ public class EnemySpawner {
         return enemies;
     }
     //testeando nivelesBarrera
-    public static List<AEnemy> crearEnemigosNivelBarrera(Rect gameRect) {
+    public static List<AEnemy> crearEnemigosNivelAspersor(Rect gameRect) {
         List<AEnemy> enemies = new ArrayList<>();
-        enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 0, 0, vx, 0, E_SHOT_GUN));
-        enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 7, 1, -vx, 0, E_SHOT_GUN));
+            enemies.add(createEnemyShip(E_SINU, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 0, 0, vx, 0, E_SHOT_GUN));
+            enemies.add(createEnemyShip(E_SINU, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 7, 1, -vx, 0, E_SHOT_GUN));
         List<EnemyShip> el1 = new ArrayList<>();
         el1.add(createEnemyShip(E_BARRIER, ENEMYBARRIER4_SPRITE_IMAGE, gameRect, 2, 3, 0, 0, E_SHOT_NOTHING));
         el1.add(createEnemyShip(E_BARRIER, ENEMYBARRIER4_SPRITE_IMAGE, gameRect, 3, 2, 0, 0, E_SHOT_NOTHING));
