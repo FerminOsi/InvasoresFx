@@ -6,6 +6,8 @@ import com.aetxabao.invasoresfx.sprite.EnemyShip;
 import com.aetxabao.invasoresfx.sprite.EnemyShipGroup;
 import com.aetxabao.invasoresfx.sprite.IHaveShield;
 import com.aetxabao.invasoresfx.sprite.weaponry.AShot;
+import com.aetxabao.invasoresfx.sprite.weaponry.Cannonball;
+import com.aetxabao.invasoresfx.sprite.weaponry.FullPenGun;
 import com.aetxabao.invasoresfx.sprite.weaponry.Laserbeam;
 import com.aetxabao.invasoresfx.util.Rect;
 
@@ -112,7 +114,14 @@ public class GameManager {
             AShot AShotUp = itShotUp.next();
             for (Iterator<AShot> itShotDown = shotsDown.iterator(); itShotDown.hasNext(); ) {
                 AShot AShotDown = itShotDown.next();
-                if (AShotUp.collides(AShotDown)) {
+                if (AShotUp.collides(AShotDown) && AShotDown instanceof FullPenGun) {
+                    itShotUp.remove();
+
+                    temps.add(new SpriteTemp(temps, AShotDown.getRect().centerX(), AShotDown.getRect().centerY(),
+                            EXPLOSION_12_SPRITE_IMAGE, 12));
+                    break;
+
+                }else if (AShotUp.collides(AShotDown) ) {
                     itShotUp.remove();
                     itShotDown.remove();
                     temps.add(new SpriteTemp(temps, AShotDown.getRect().centerX(), AShotDown.getRect().centerY(),

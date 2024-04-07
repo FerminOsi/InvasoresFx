@@ -66,6 +66,7 @@ public final class AppConsts {
 
     //region Gun
     public static final Image BALL_SPRITE_IMAGE = new Image(Main.class.getResource("sprite/ball.png").toString());
+    public static final Image BALL_SPRITE_IMAGE_FULLPEN = new Image(Main.class.getResource("sprite/ball-sprite-fullpengun.png").toString());
     //endregion
 
     //region Ship

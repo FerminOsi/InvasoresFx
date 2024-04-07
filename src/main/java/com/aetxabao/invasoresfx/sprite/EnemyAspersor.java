@@ -7,6 +7,7 @@ import com.aetxabao.invasoresfx.util.Rect;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EnemyAspersor extends EnemyShipDiagonal implements IHaveShield {
     int impactCount;
@@ -17,10 +18,11 @@ public class EnemyAspersor extends EnemyShipDiagonal implements IHaveShield {
     @Override
     public boolean impact() {
         this.addImpact();
-        return impactCount > 1;
+        return impactCount > 3;
     }
 
     public void addImpact() {
         this.impactCount++;
     }
+
 }
