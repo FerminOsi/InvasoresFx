@@ -19,7 +19,7 @@ public final class AppConsts {
     public static final int BOARD_MARGIN_TOP = 30;
     static final int BOARD_WIDTH = 240*2;
     static final int BOARD_HEIGHT = 337*2 - BOARD_MARGIN_TOP;
-    static final double GAME_SPEED = 30;//steps per second
+    static final double GAME_SPEED = 45;//steps per second
     static final Image ICON_16 = new Image(Main.class.getResource("icon/icon16.png").toString());
     static final Image ICON_32 = new Image(Main.class.getResource("icon/icon32.png").toString());
     static final Image ICON_64 = new Image(Main.class.getResource("icon/icon64.png").toString());

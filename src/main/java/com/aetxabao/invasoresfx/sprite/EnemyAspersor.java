@@ -18,7 +18,7 @@ public class EnemyAspersor extends EnemyShipDiagonal implements IHaveShield {
     @Override
     public boolean impact() {
         this.addImpact();
-        return impactCount > 3;
+        return impactCount > 2;
     }
 
     public void addImpact() {
