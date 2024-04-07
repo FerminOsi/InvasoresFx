@@ -147,8 +147,18 @@ public class EnemySpawner {
         List<AEnemy> enemies = new ArrayList<>();
         List<EnemyShip> el1 = new ArrayList<>();
 
-        enemies.add(createEnemyShip(E_SINU, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 0, 0, vx, vy, E_SHOT_GUN));
-        enemies.add(createEnemyShip(E_SINU, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 7, 1, -vx, vy, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_SINU, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 0, -5, vx, 2, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_SINU, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 5, -5, -vx, 2, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_SINU, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 3, -5, vx, 2, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_SINU, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 1, -5, -vx, 1, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_SINU, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 2, -5, vx, 1, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_SINU, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 4, -5, -vx, 1, E_SHOT_GUN));
+
+        enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_1, gameRect, 1, 1, 4, 0, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_1, gameRect, 2, 2, 4, 0, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_1, gameRect, 3, 3, 4, 0, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_1, gameRect, 4, 4, 4, 0, E_SHOT_GUN));
+
 
         el1.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_1, gameRect, 2, 3, 0, 0, E_SHOT_NOTHING));
         el1.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_1, gameRect, 3, 2, 0, 0, E_SHOT_NOTHING));
@@ -159,6 +169,7 @@ public class EnemySpawner {
         el1.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_1, gameRect, 4, 5, 0, 0, E_SHOT_NOTHING));
         el1.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_1, gameRect, 5, 4, 0, 0, E_SHOT_NOTHING));
         el1.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_1, gameRect, 0, 3, 0, 0, E_SHOT_NOTHING));
+
 
         EnemyShipGroup eg1 = new EnemyShipGroup(gameRect, el1);
         eg1.setXSpeed(vx);
