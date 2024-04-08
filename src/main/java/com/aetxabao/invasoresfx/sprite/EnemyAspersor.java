@@ -7,25 +7,17 @@ import com.aetxabao.invasoresfx.util.Rect;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static com.aetxabao.invasoresfx.game.AppConsts.*;
 import static com.aetxabao.invasoresfx.game.AppConsts.ENEMYSHIP_ALFA;
 
 
-public class EnemyAspersor extends AEnemy implements IHaveShield {
-    int impactCount;
+public class EnemyAspersor extends AEnemy implements ICanSpawn {
 
-    @Override
-    public boolean impact() {
-        this.addImpact();
-        return impactCount > 2;
-    }
-
-    public void addImpact() {
-        this.impactCount++;
-    }
 
     int N;//ticks para cambio de frame
     int n;
@@ -71,4 +63,14 @@ public class EnemyAspersor extends AEnemy implements IHaveShield {
                 dst.left, dst.top, dst.width(), dst.height());
     }
 
+    @Override
+    public List<AEnemy> spawn() {
+        ArrayList<AEnemy> enemigos = new ArrayList<>();
+        Random r = new Random();
+        int randomNum = r.nextInt((100) + 1);
+        if (randomNum > 98){
+            enemigos.add(new EnemyShip(gameRect, img, n));
+        }
+        return enemigos;
+    }
 }
