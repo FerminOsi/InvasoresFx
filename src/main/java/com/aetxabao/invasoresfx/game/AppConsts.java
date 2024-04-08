@@ -37,7 +37,7 @@ public final class AppConsts {
     //endregion
 
     //region GameManager
-    static final int INIT_LEVEL = 3;
+    static final int INIT_LEVEL = 3  ;
     static final int INIT_LIFES = 3;
     static final int PTS_ENEMYSHIP = 20;
     static final int PTS_NEWLEVEL = 100;

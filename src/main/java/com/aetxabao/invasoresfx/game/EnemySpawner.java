@@ -27,27 +27,29 @@ public class EnemySpawner {
 
     /**
      * Transforma una coordenada en una posición
+     *
      * @param i coordenada de 0 a n eje horizontal
      * @return posicion x
      */
-    private static int getX(Rect gameRect, int i){
-        return gameRect.left + i*gameRect.width()/ n;
+    private static int getX(Rect gameRect, int i) {
+        return gameRect.left + i * gameRect.width() / n;
     }
 
     /**
      * Transforma una coordenada en una posición
+     *
      * @param j coordenada de 0 a m eje vertical
      * @return posicion y
      */
-    private static int getY(Rect gameRect, int j){
-        return gameRect.top + j*gameRect.height()/ m;
+    private static int getY(Rect gameRect, int j) {
+        return gameRect.top + j * gameRect.height() / m;
     }
 
     public static List<AEnemy> createEnemies(Rect gameRect, int level) {
         List<AEnemy> enemies = new ArrayList<>();
         level = level % LEVELS;
 
-        switch (level){
+        switch (level) {
             case 1:
                 enemies = crearEnemigosNivelDonut(gameRect);
                 break;
@@ -56,6 +58,9 @@ public class EnemySpawner {
                 break;
             case 3:
                 enemies = crearEnemigosNivelAspersor(gameRect);
+                break;
+            case 4:
+                enemies = crearEnemigosNivelBoss(gameRect);
                 break;
             default:
                 enemies = crearEnemigosNivelPulpo(gameRect);
@@ -66,15 +71,16 @@ public class EnemySpawner {
 
     /**
      * Crea un enemigo en una coordenada (i,j) con una velocidad (vx,vy)
-     * @param i coordenada horizontal
-     * @param j coordenada vertical
+     *
+     * @param i  coordenada horizontal
+     * @param j  coordenada vertical
      * @param vx velocidad eje x
      * @param vy velocidad eje y
      * @return una instancia del enemigo
      */
     public static EnemyShip createEnemyShip(EEnemyType type, Image enemyImage, Rect gameRect, int i, int j, int vx, int vy, EEnemyShot shot) {
         EnemyShip e;
-        switch (type){
+        switch (type) {
             case E_DIAGONAL:
                 e = new EnemyShipDiagonal(gameRect, enemyImage, TICKSxFRAME);
                 break;
@@ -82,24 +88,53 @@ public class EnemySpawner {
             default:
                 e = new EnemyShip(gameRect, enemyImage, TICKSxFRAME);
                 break;
-            case E_SINU:
-                e = new EnemyAspersor(gameRect, enemyImage, TICKSxFRAME);
+
+
         }
-        if (shot == E_SHOT_GUN && type == E_SINU){
-            e.setWeapon(new AspersorGun());
-        }else{
-           e.setWeapon(new Gun());
+        if (shot == E_SHOT_GUN) {
+            e.setWeapon(new Gun());
         }
         e.setPos(getX(gameRect, i), getY(gameRect, j));
         e.setXSpeed(vx);
         e.setYSpeed(vy);
         return e;
     }
+    public static EnemyAspersor createEnemyAspersor(EEnemyType type, Image enemyImage, Rect gameRect, int i, int j, int vx, int vy, EEnemyShot shot) {
+        EnemyAspersor e;
+        switch (type) {
+            default:
+                e = new EnemyAspersor(gameRect, enemyImage, TICKSxFRAME);
+                break;
 
+    }
+        if (shot == E_SHOT_GUN && type == E_ASPERSOR) {
+            e.setWeapon(new AspersorGun());
+        } else {
+            e.setWeapon(new Gun());
+        }
+        e.setPos(getX(gameRect, i), getY(gameRect, j));
+        e.setXSpeed(vx);
+        e.setYSpeed(vy);
+        return e;
+    }
+    public static EnemyBoss createEnemyBoss(EEnemyType type, Image enemyImage, Rect gameRect, int i, int j, int vx, int vy, EEnemyShot shot) {
+        EnemyBoss e;
+        switch (type) {
+            default:
+                e = new EnemyBoss(gameRect, enemyImage, TICKSxFRAME);
+                break;
+
+        }
+        e.setPos(getX(gameRect, i), getY(gameRect, j));
+        e.setXSpeed(vx);
+        e.setYSpeed(vy);
+        return e;
+    }
     public static List<AEnemy> crearEnemigosNivelDonut(Rect gameRect) {
         List<AEnemy> enemies = new ArrayList<>();
         enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 0, 0, vx, 0, E_SHOT_GUN));
         enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 7, 1, -vx, 0, E_SHOT_GUN));
+
         List<EnemyShip> el1 = new ArrayList<>();
         el1.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_3, gameRect, 2, 3, 0, 0, E_SHOT_NOTHING));
         el1.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_3, gameRect, 3, 2, 0, 0, E_SHOT_NOTHING));
@@ -142,22 +177,23 @@ public class EnemySpawner {
         enemies.add(createEnemyShip(E_DIAGONAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 4, 0, vx, vy, E_SHOT_NOTHING));
         return enemies;
     }
+
     //testeando nivelesBarrera
     public static List<AEnemy> crearEnemigosNivelAspersor(Rect gameRect) {
         List<AEnemy> enemies = new ArrayList<>();
         List<EnemyShip> el1 = new ArrayList<>();
 
-        enemies.add(createEnemyShip(E_SINU, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 0, -12, vx, 2, E_SHOT_GUN));
-        enemies.add(createEnemyShip(E_SINU, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 5, -12, -vx, 2, E_SHOT_GUN));
-        enemies.add(createEnemyShip(E_SINU, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 3, -12, vx, 2, E_SHOT_GUN));
-        enemies.add(createEnemyShip(E_SINU, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 1, -12, -vx, 1, E_SHOT_GUN));
-        enemies.add(createEnemyShip(E_SINU, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 2, -12, vx, 1, E_SHOT_GUN));
-        enemies.add(createEnemyShip(E_SINU, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 4, -12, -vx, 1, E_SHOT_GUN));
+        enemies.add(createEnemyAspersor(E_ASPERSOR, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 0, -12, vx, 2, E_SHOT_GUN));
+        enemies.add(createEnemyAspersor(E_ASPERSOR, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 5, -12, -vx, 2, E_SHOT_GUN));
+        enemies.add(createEnemyAspersor(E_ASPERSOR, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 3, -12, vx, 2, E_SHOT_GUN));
+        enemies.add(createEnemyAspersor(E_ASPERSOR, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 1, -12, -vx, 1, E_SHOT_GUN));
+        enemies.add(createEnemyAspersor(E_ASPERSOR, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 2, -12, vx, 1, E_SHOT_GUN));
+        enemies.add(createEnemyAspersor(E_ASPERSOR, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 4, -12, -vx, 1, E_SHOT_GUN));
 
         enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_1, gameRect, 0, -2, 4, 4, E_SHOT_GUN));
         enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_1, gameRect, 1, -2, -4, 4, E_SHOT_GUN));
         enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_1, gameRect, 2, -2, 4, 4, E_SHOT_GUN));
-        enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_1, gameRect, 3,-2 , -4, 4, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_1, gameRect, 3, -2, -4, 4, E_SHOT_GUN));
 
 
         el1.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_1, gameRect, 2, 3, 0, 10, E_SHOT_NOTHING));
@@ -170,7 +206,6 @@ public class EnemySpawner {
         el1.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_1, gameRect, 5, 4, 0, 10, E_SHOT_NOTHING));
 
 
-
         EnemyShipGroup eg1 = new EnemyShipGroup(gameRect, el1);
         eg1.setXSpeed(vx);
         enemies.add(eg1);
@@ -179,4 +214,9 @@ public class EnemySpawner {
 
     }
 
+    public static List<AEnemy> crearEnemigosNivelBoss(Rect gameRect) {
+        List<AEnemy> enemies = new ArrayList<>();
+        enemies.add(createEnemyBoss(E_BOSS, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 0, 4, vx, 2, E_SHOT_GUN));
+        return enemies;
+    }
 }
