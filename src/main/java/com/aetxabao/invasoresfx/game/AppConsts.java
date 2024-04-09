@@ -34,6 +34,8 @@ public final class AppConsts {
     static final Image ENEMYSHIP_SPRITE_IMAGE_3 = new Image(Main.class.getResource("sprite/ei3.png").toString());
     static final Image ENEMYBARRIER4_SPRITE_IMAGE = new Image(Main.class.getResource("sprite/barrier4.png").toString());
     static final Image ENEMYTOWER3_SPRITE_IMAGE = new Image(Main.class.getResource("sprite/tower3.png").toString());
+
+    // static final Image BLUE_ENEMY = new Image(Main.class.getResource("sprite/blueSprite.png").toString());
     //endregion
 
     //region GameManager
