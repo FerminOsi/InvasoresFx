@@ -17,7 +17,7 @@ public class EnemyBoss extends EnemyShip implements  IHaveShield{
     @Override
     public boolean impact() {
         this.addImpact();
-        return impactCount > 15;
+        return impactCount > 20;
     }
 
     public void addImpact() {
