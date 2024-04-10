@@ -26,8 +26,6 @@ public class EnemyAspersor extends AEnemy implements ICanSpawn {
     int N;//ticks para cambio de frame
     int n;
     Rect gameRect;
-
-
     public EnemyAspersor(Rect gameRect, Image img, int N) {
         super(img, ENEMYSHIP_ROWS, ENEMYSHIP_COLS);
         this.gameRect = gameRect;
@@ -36,21 +34,16 @@ public class EnemyAspersor extends AEnemy implements ICanSpawn {
         this.N = N;
         this.n = 0;
     }
-
-
     public void updateFrame(){
         if (++n==N) {
             n = 0;
             currentFrame = ++currentFrame % cols;
         }
     }
-
-
     @Override
     public Rect getRect(){
         return new Rect(x, y, (int)(x + ENEMYSHIP_ALFA * width),(int)(y + ENEMYSHIP_ALFA * height));
     }
-
 
     public void update() {
         if (x > gameRect.right - width - xSpeed || x + xSpeed < gameRect.left) {
@@ -60,7 +53,6 @@ public class EnemyAspersor extends AEnemy implements ICanSpawn {
         y = y + ySpeed;
         updateFrame();
     }
-
 
     @Override
     public void draw(GraphicsContext gc) {
@@ -79,14 +71,11 @@ public class EnemyAspersor extends AEnemy implements ICanSpawn {
         ArrayList<AEnemy> enemigos = new ArrayList<>();
         Random r = new Random();
 
-
         int randomNum = r.nextInt((100) + 1);
         if (randomNum > 98){
             enemigos.add(new EnemyShip(gameRect, img, n));
             enemigos.get(count).setWeapon(new AspersorGun());
             count +=1;
-
-
         }
         return enemigos;
     }
