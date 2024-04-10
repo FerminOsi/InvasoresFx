@@ -15,6 +15,7 @@ public class EnemyBoss extends AEnemy implements  IHaveShield{
     int N;//ticks para cambio de frame
     int n;
     Rect gameRect;
+    int impactCount;
     public EnemyBoss(Rect gameRect, Image img, int N) {
         super(img, ENEMYSHIP_ROWS, ENEMYSHIP_COLS);
         this.gameRect = gameRect;
@@ -54,8 +55,6 @@ public class EnemyBoss extends AEnemy implements  IHaveShield{
     }
 
 
-    int impactCount;
-
     @Override
     public boolean impact() {
         this.addImpact();
@@ -65,7 +64,5 @@ public class EnemyBoss extends AEnemy implements  IHaveShield{
     public void addImpact() {
         this.impactCount++;
     }
-
-
     }
 
