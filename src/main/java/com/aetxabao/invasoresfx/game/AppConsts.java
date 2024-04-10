@@ -32,14 +32,16 @@ public final class AppConsts {
     static final Image ENEMYSHIP_SPRITE_IMAGE_1 = new Image(Main.class.getResource("sprite/ei1.png").toString());
     static final Image ENEMYSHIP_SPRITE_IMAGE_2 = new Image(Main.class.getResource("sprite/ei2.png").toString());
     static final Image ENEMYSHIP_SPRITE_IMAGE_3 = new Image(Main.class.getResource("sprite/ei3.png").toString());
+    static final Image ENEMYBOSS_SPRITE_IMAGE_4 = new Image(Main.class.getResource("sprite/enemyBoss.png").toString());
+    static final Image ENEMYBOSS_SPRITE_IMAGE_5 = new Image(Main.class.getResource("sprite/enemyBoss1.png").toString());
+    static final Image ENEMYBOSS_SPRITE_IMAGE_6 = new Image(Main.class.getResource("sprite/enemyBoss2.png").toString());
     static final Image ENEMYBARRIER4_SPRITE_IMAGE = new Image(Main.class.getResource("sprite/barrier4.png").toString());
     static final Image ENEMYTOWER3_SPRITE_IMAGE = new Image(Main.class.getResource("sprite/tower3.png").toString());
 
-    // static final Image BLUE_ENEMY = new Image(Main.class.getResource("sprite/blueSprite.png").toString());
     //endregion
 
     //region GameManager
-    static final int INIT_LEVEL = 3  ;
+    static final int INIT_LEVEL = 3;
     static final int INIT_LIFES = 3;
     static final int PTS_ENEMYSHIP = 20;
     static final int PTS_NEWLEVEL = 100;
